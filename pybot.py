@@ -8,7 +8,6 @@ from nltk.stem import WordNetLemmatizer
 import subprocess
 from dotenv import load_dotenv
 from tinymlp import runMLP
-from command import run_command
 
 # load .env variable
 load_dotenv()
@@ -123,7 +122,7 @@ class Pybot:
                 phrase_tokens = self.normalize(phrase)
                 if all(tok in tokens for tok in phrase_tokens):
                     return intent
-        return None
+        return None, None
 
     def respond(self, userInputMessage):
         analyze_text(text=userInputMessage)
@@ -251,9 +250,6 @@ class Pybot:
                 index = lowercaseMsg.index(" in ")
                 city = userInputMessage[index + 4 :].strip()
             return self.getWeather(city=city)
-        elif intent == "command_line":
-            print("running command: ")
-            run_command(cmd=userInputMessage)
         else:
             return random.choice([
                 "what the fuck do you mean by that??",
