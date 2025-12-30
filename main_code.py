@@ -7,6 +7,6 @@ if __name__ == "__main__":
     while isBotActive:
         user = input("user@pybot #code> ")
         if user in ["quit","stop","halt","exit","exit()"]:
-            print("bot@pybot #code> exit()")
+            print("bot@pybot#code> exit()")
             break
         print(f"bot@pybot #code> {bot.respondCode(userMsg=user)}")

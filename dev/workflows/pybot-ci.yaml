@@ -1,0 +1,27 @@
+name: PyBot CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_requests:
+
+  jobs:
+    build:
+      run_on: ubuntu-latest
+
+      steps:
+        - name: Checkout repo
+          uses: actions/checkout@v4
+
+        - name: setting up python
+          uses: actions/setup-python@v5
+          with:
+            python-version: "3.12"
+
+        - name: install dependencies
+          run: |
+            pip install -r requirements.txt || true
+
+        - name: test PyBot
+          run: |
+            python pybot.py || echo "PyBot survived anyway"

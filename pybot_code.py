@@ -12,7 +12,11 @@ class PybotProgrammer:
                 "pls me need python code pls", "hello i want python code", "python code right now", "the python code", "the python code pls", "the python code please"
             ],
             "clang": [
-                "give me C code", "i want C code", "hey i want C code", "give me a C code", "hello, i want C code", "me want C code", "C language code pls"
+                "give me C code", "i want C code", "hey i want C code", "give me a C code", "hello, i want C code", "me want C code", "C language code pls", "i wanna make a C code",
+                "C snippet", "C snippet pls"
+            ],
+            "lua": [
+                "me want lua code", "roblox code", "lua", "roblox", "lua snippet", "lua code", "roblox snippet", "roblox lua", "i want roblox lua code"
             ]
         }
 
@@ -66,7 +70,14 @@ class PybotProgrammer:
                 "int main() {\n\tprintf(\"hello world\");\n}",
                 "int one = 1\nprintf(\"%d\", one)",
                 "int num = 14;\nprintf(\"%p\", &num);",
-                "int a = 10;\nint *p = &a;\nprintf(\"%p\", p)"
+                "int a = 10;\nint *p = &a;\nprintf(\"%p\", p)",
+                "int add(int a, int b) {\n\treturn a + b\n}"
+            ])
+        elif intent == "lua":
+            return random.choice([
+                "print(\"Hello World!\")",
+                "print(\"i am in Lua!\")",
+                "local function add(a, b) then\n\treturn a + b\nend"
             ])
         else:
             return "sorry i only understand python and C. now stfu retard"

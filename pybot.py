@@ -8,6 +8,7 @@ from nltk.stem import WordNetLemmatizer
 import subprocess
 from dotenv import load_dotenv
 from tinymlp import runMLP
+import requests
 
 # load .env variable
 load_dotenv()
@@ -68,15 +69,20 @@ class Pybot:
             "weather": [
                 "whats the weather currently", "whats the weather", "yo what is the weather rn", "hey, weather?", "what is the current weather", "yo whats the weather",
                 "pybot, whats the weather", "hey, weather pls", "the weather please", "the weather plsplspls"
-            ],
-            "command_line": [
-                "terminal", "shell", "run", "zsh", "execute", "exec", "shl"
             ]
         }
-
     def saveUserMemories(self):
         with open(self.memory_file, "w", encoding="utf-8") as file:
             json.dump(self.memory, file, indent=4)
+
+    def readWikipediaPages(self, page_title: str) -> str:
+        try:
+            url = f"https://en.wikipedia.org/api/rest_v1/page/summary/{page_title}"
+            res = requests.get(url=url)
+            data = res.json()
+            return data.get("extract", "no content found..")
+        except Exception as e:
+            return f"error fetching the wikipedia page: {e}"
 
     def loadUserMemories(self):
         if os.path.exists(self.memory_file):
